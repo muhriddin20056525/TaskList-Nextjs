@@ -7,10 +7,7 @@ import { authOptions } from "@/lib/user";
 
 // get single task
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(_: Request, { params }: { params: { id: string } }) {
   try {
     await connectToDB();
 
@@ -20,7 +17,7 @@ export async function GET(
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
     }
 
-    return Response.json(
+    return NextResponse.json(
       { message: "Get single task", task: singleTask },
       { status: 200 }
     );
@@ -36,7 +33,7 @@ export async function GET(
 // delete task
 
 export async function DELETE(
-  req: Request,
+  _: Request,
   { params }: { params: { id: string } }
 ) {
   try {

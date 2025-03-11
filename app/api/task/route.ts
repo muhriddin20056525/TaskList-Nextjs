@@ -52,7 +52,7 @@ export async function POST(req: Request) {
 
 // get all task
 
-export async function GET(req: Request) {
+export async function GET(_: Request) {
   try {
     await connectToDB();
 
