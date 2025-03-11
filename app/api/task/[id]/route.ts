@@ -1,6 +1,6 @@
 import { connectToDB } from "@/lib/mongoose";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import UserModel from "@/models/User";
 import TaskModel from "@/models/Task";
 import { authOptions } from "@/lib/user";
@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/user";
 // get single task
 
 export async function GET(
-  req: NextRequest,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -36,7 +36,7 @@ export async function GET(
 // delete task
 
 export async function DELETE(
-  req: NextRequest,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -72,7 +72,7 @@ export async function DELETE(
 // edit task
 
 export async function PUT(
-  req: NextRequest,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {

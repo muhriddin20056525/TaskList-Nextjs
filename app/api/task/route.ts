@@ -1,6 +1,6 @@
 import { connectToDB } from "@/lib/mongoose";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import UserModel from "@/models/User";
 import TaskModel from "@/models/Task";
@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/user";
 
 // create new task
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     await connectToDB();
     const session = await getServerSession(authOptions);
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
 // get all task
 
-export async function GET(req: NextRequest) {
+export async function GET(req: Request) {
   try {
     await connectToDB();
 
