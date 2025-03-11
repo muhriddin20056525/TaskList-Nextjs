@@ -1,9 +1,10 @@
 import { connectToDB } from "@/lib/mongoose";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
+
 import UserModel from "@/models/User";
 import TaskModel from "@/models/Task";
+import { authOptions } from "@/lib/user";
 
 // create new task
 
