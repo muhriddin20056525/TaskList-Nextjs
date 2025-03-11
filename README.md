@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **TaskList**
 
-## Getting Started
+Foydalanuchilar tasklar yaratishi o'zgartirishi va o'chirishi uchun mo'ljallangan dastur.
 
-First, run the development server:
+## Xususiyatlar
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Foydalanuvchi autentifikatsiyasi**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  - Ro‘yxatdan o‘tish: Foydalanuvchi `username`, `email` va `password` kiritadi.
+  - Login qilish: `email` va `password` orqali tizimga kiradi.
+  - Ma'lumotlar backend tomonidan tekshiriladi va mos javob qaytariladi.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Task boshqaruvi**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  - **Yaratish** – Foydalanuvchi yangi vazifa qo‘shishi mumkin.
+  - **Ko‘rish** – O‘ziga tegishli barcha tasklarni ko‘rishi mumkin.
+  - **Tahrirlash** – Task ma’lumotlarini o‘zgartirishi mumkin.
+  - **O‘chirish** – Keraksiz tasklarni o‘chirib tashlashi mumkin.
 
-## Learn More
+- **Ma’lumotlarning to‘g‘ri kiritilishini tekshirish**
+  - Foydalanuvchi kiritgan barcha ma’lumotlar `React Hook Form` orqali tekshiriladi.
+  - Majburiy maydonlar bo‘sh qoldirilsa yoki noto‘g‘ri formatda kiritilsa, ogohlantirish beriladi.
 
-To learn more about Next.js, take a look at the following resources:
+## Texnologiyalar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Loyiha quyidagi texnologiyalar va kutubxonalardan foydalanadi:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js** – Foydalanuvchi interfeysini yaratish va server tomonida API endpointlar yozish uchun.
+- **TypeScript** – Kodingizni xavfsizroq va tiplangan qilish uchun.
+- **Tailwind CSS** – UI komponentlariga tez va moslashuvchan stil berish uchun.
+- **React Hook Form** – Forma ma’lumotlarini boshqarish va validatsiya qilish uchun.
+- **NextAuth.js** – Foydalanuvchilarni ro‘yxatdan o‘tkazish va login qilish uchun.
+- **Axios** – Frontend va backend o‘rtasida ma’lumot almashish uchun.
+- **Mongoose** – MongoDB ma’lumotlar bazasi bilan ishlash va ma’lumotlarni saqlash uchun.
+- **bcrypt** – Foydalanuvchi parollarini xavfsiz shifrlash uchun.
 
-## Deploy on Vercel
+## Sahifalar
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Loyihada quyidagi sahifalar mavjud:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **`(auth)/login/page.tsx`** – Login sahifasi.
+- **`(auth)/register/page.tsx`** – Ro‘yxatdan o‘tish sahifasi.
+
+  - Ushbu sahifalarda kerakli autentifikatsiya komponentlari chaqirilgan.
+
+- **`(root)/page.tsx`** – Home sahifasi. Foydalanuching barcha tasklari shu sahifada
+- **`(root)/create-task/page.tsx`** – Yangi task yaratish sahifasi.
+- **`(root)/edit-task/page.tsx`** – Mavjud taskni tahrirlash sahifasi.
+
+  - Ushbu sahifalarda kerakli UI va funksional komponentlar chaqirilgan.
+
+- **`(root)/layout.tsx`** – Root layout fayli, barcha asosiy sahifalarga umumiy tuzilmani ta’minlaydi.
+
+## Komponentlar
+
+Loyihada quyidagi asosiy komponentlar mavjud:
+
+- **`components/RegisterForm`** – Foydalanuvchilarni ro‘yxatdan o‘tkazish formasi.
+- **`components/LoginForm`** – Login qilish uchun forma.
+- **`components/CreateTaskForm`** – Yangi task yaratish uchun forma.
+- **`components/EditTaskForm`** – Tasklarni tahrirlash uchun forma.
+- **`components/Loader`** – Tasklarni yuklash jarayonida ko‘rsatiladigan loader.
+- **`components/Navbar`** – Saytning navigatsiya paneli.
+- **`components/TaskItem`** – Tasklar ro‘yxatini iteratsiya qilib foydalanuvchiga ko‘rsatish uchun komponent.
+
+## API Yo‘nalishlari (Routes)
+
+Loyihada quyidagi API yo‘nalishlari mavjud:
+
+- **`app/api/auth/register/route.ts`** – Yangi foydalanuvchini ro‘yxatdan o‘tkazish uchun.
+- **`app/api/auth/[...next-auth]/route.ts`** – `NextAuth` orqali login qilish uchun.
+
+- **`app/api/task/route.ts`**
+
+  - Yangi task yaratish.
+  - Barcha tasklarni olish.
+
+- **`app/api/task/[id]/route.ts`**
+  - Bitta taskni olish.
+  - Taskni tahrirlash.
+  - Taskni o‘chirish.
+
+## Qo‘shimcha Fayllar va Tuzilmalar
+
+- **`lib/mongoose.ts`** – MongoDB bazasiga ulanishni boshqarish uchun.
+- **`models/Task.ts`** – Task ma’lumotlarini saqlash uchun MongoDB modeli.
+- **`models/User.ts`** – Foydalanuvchilar ma’lumotlarini saqlash uchun MongoDB modeli.
+- **`types/index.d.ts`** – Loyiha bo‘yicha umumiy TypeScript typelarini saqlash uchun.
+- **`.env`** – Maxfiy kalitlar va muhit o‘zgaruvchilarini saqlash uchun.
